@@ -940,7 +940,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if ((!fileTorRc.exists()) || (!fileTorRc.canRead()) )
             return false;
 
-        if ((!fileTorrcCustom.exists()) || (!fileTorrcCustom.canRead()) )
+        /* ********OpenRefactory Warning********
+		 Possible null pointer Dereference!
+		 Path: 
+			File: TorService.java, Line: 934
+				File fileTorrcCustom=updateTorrcCustomFile();
+				Variable fileTorrcCustom is initialized null.
+			File: TorService.java, Line: 943
+				fileTorrcCustom.exists()
+				fileTorrcCustom is referenced in method invocation.
+				The expression is enclosed inside an If statement.
+		*/
+		if ((!fileTorrcCustom.exists()) || (!fileTorrcCustom.canRead()) )
             return false;
 
         sendCallbackLogMessage(getString(R.string.status_starting_up));
